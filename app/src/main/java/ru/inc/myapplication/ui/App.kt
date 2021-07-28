@@ -3,6 +3,7 @@ package ru.inc.myapplication.ui
 import android.app.Application
 import ru.inc.myapplication.di.component.AppComponent
 import ru.inc.myapplication.di.component.DaggerAppComponent
+import ru.inc.myapplication.di.module.AppModule
 import ru.inc.myapplication.mvp.model.entity.room.db.Database
 
 class App : Application() {
@@ -19,6 +20,8 @@ class App : Application() {
         instance = this
         Database.create(this)
 
-        appComponent = DaggerAppComponent.builder().build()
+        appComponent = DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
     }
 }

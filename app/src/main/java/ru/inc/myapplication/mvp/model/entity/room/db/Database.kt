@@ -24,7 +24,7 @@ abstract class Database : RoomDatabase() {
 
     companion object {
 
-        private const val DB_NAME = "database.db"
+        const val DB_NAME = "database.db"
         private var instance: Database? = null
 
         fun getInstance() = instance ?: throw RuntimeException("Create database with create()")
