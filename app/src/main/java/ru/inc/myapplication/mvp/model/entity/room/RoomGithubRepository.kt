@@ -3,7 +3,6 @@ package ru.inc.myapplication.mvp.model.entity.room
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import ru.inc.myapplication.mvp.model.entity.room.RoomGithubUser
 
 @Entity(
     foreignKeys = [ForeignKey(

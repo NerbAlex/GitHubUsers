@@ -16,7 +16,6 @@ class GlideImageLoader : IImageLoader<ImageView> {
     val LOG = Logger.getLogger(GlideImageLoader::class.java.name)
 
     override fun loadInto(url: String, container: ImageView) {
-        LOG.test("loadInto")
         Glide.with(container.context)
             .asBitmap()
             .load(url)
@@ -28,7 +27,6 @@ class GlideImageLoader : IImageLoader<ImageView> {
                     target: Target<Bitmap>?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    LOG.test("Обработка провала загрузки")
 
                     //Обработка провала загрузки
                     return false
@@ -41,7 +39,6 @@ class GlideImageLoader : IImageLoader<ImageView> {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    LOG.test("Save to cache")
 
                     //Save to cache
                     return false
