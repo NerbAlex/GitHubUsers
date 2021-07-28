@@ -41,7 +41,17 @@ class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
         LOG.test("by moxyPresenter {")
 
         val user = arguments?.getParcelable<GithubUser>(USER_ARG) as GithubUser
-        UserPresenter(AndroidSchedulers.mainThread(), RetrofitGithubRepositoriesRepo(ApiHolder.api, Database.getInstance(), AndroidNetworkStatus(requireContext())), App.instance.router, user, AndroidScreens())
+        UserPresenter(
+            AndroidSchedulers.mainThread(),
+            RetrofitGithubRepositoriesRepo(
+                ApiHolder.api,
+                Database.getInstance(),
+                AndroidNetworkStatus(requireContext())
+            ),
+            user,
+        ).apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     private var vb: FragmentUserBinding? = null

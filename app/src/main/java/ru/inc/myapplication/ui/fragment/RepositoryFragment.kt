@@ -29,7 +29,9 @@ class RepositoryFragment : MvpAppCompatFragment(), RepositoryView, BackButtonLis
 
     val presenter: RepositoryPresenter by moxyPresenter {
         val repository = arguments?.getParcelable<GithubRepository>(REPOSITORY_ARG) as GithubRepository
-        RepositoryPresenter(App.instance.router, repository)
+        RepositoryPresenter(repository).apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
