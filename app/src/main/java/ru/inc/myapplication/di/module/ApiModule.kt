@@ -14,11 +14,13 @@ import ru.inc.myapplication.mvp.model.api.IDataSource
 import ru.inc.myapplication.mvp.model.network.INetworkStatus
 import ru.inc.myapplication.ui.App
 import ru.inc.myapplication.ui.network.AndroidNetworkStatus
+import javax.inject.Singleton
 
 @Module
 class ApiModule {
 
     @Provides
+    @Singleton
     fun apiProvide(client: OkHttpClient, gson: Gson): IDataSource = Retrofit.Builder()
         .baseUrl("https://api.github.com/")
         .client(client)
@@ -28,12 +30,14 @@ class ApiModule {
         .create(IDataSource::class.java)
 
     @Provides
+    @Singleton
     fun gsonProvide(): Gson = GsonBuilder()
         .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
         .excludeFieldsWithoutExposeAnnotation()
         .create()
 
     @Provides
+    @Singleton
     fun clientProvide(): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -41,6 +45,7 @@ class ApiModule {
         .build()
 
     @Provides
+    @Singleton
     fun networkStatusProvide(app: App): INetworkStatus = AndroidNetworkStatus(app)
 
 

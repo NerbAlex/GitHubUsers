@@ -15,11 +15,11 @@ import javax.inject.Inject
 
 class UsersPresenter(
     val uiScheduler: Scheduler,
-    val usersRepo: IGithubUsersRepo,
 ) : MvpPresenter<UsersView>() {
 
     @Inject lateinit var screens: IScreens
     @Inject lateinit var router: Router
+    @Inject lateinit var usersRepo: IGithubUsersRepo
 
     val LOG = Logger.getLogger(UsersPresenter::class.java.name)
 

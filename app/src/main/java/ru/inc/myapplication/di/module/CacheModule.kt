@@ -7,14 +7,17 @@ import ru.inc.myapplication.mvp.model.cache.IGitHubUsersCache
 import ru.inc.myapplication.mvp.model.cache.room.RoomGitHubUsersCache
 import ru.inc.myapplication.mvp.model.entity.room.db.Database
 import ru.inc.myapplication.ui.App
+import javax.inject.Singleton
 
 @Module
 class CacheModule {
 
     @Provides
+    @Singleton
     fun dataBaseProvide(app: App) = Room.databaseBuilder(app, Database::class.java, Database.DB_NAME)
         .build()
 
     @Provides
+    @Singleton
     fun usersCache(db: Database): IGitHubUsersCache = RoomGitHubUsersCache(db)
 }

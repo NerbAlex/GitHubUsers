@@ -1,14 +1,16 @@
 package ru.inc.myapplication.di.component
 
 import dagger.Component
+import ru.inc.myapplication.di.SomeScope
 import ru.inc.myapplication.di.module.*
 import ru.inc.myapplication.mvp.presenter.MainPresenter
 import ru.inc.myapplication.mvp.presenter.RepositoryPresenter
 import ru.inc.myapplication.mvp.presenter.UserPresenter
 import ru.inc.myapplication.mvp.presenter.UsersPresenter
 import ru.inc.myapplication.ui.activity.MainActivity
+import javax.inject.Singleton
 
-
+@Singleton
 @Component(
     modules = [
         CiceroneModule::class,

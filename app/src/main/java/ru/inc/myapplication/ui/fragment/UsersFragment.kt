@@ -33,16 +33,10 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
     val presenter: UsersPresenter by moxyPresenter {
         LOG.test("by moxyPresenter {")
-        UsersPresenter(
-            AndroidSchedulers.mainThread(),
-            RetrofitGithubUsersRepo(
-                ApiHolder.api,
-                RoomGitHubUsersCache(Database.getInstance()),
-                AndroidNetworkStatus(requireContext())
-            )
-        ).apply {
-            App.instance.appComponent.inject(this)
-        }
+        UsersPresenter(AndroidSchedulers.mainThread())
+            .apply {
+                App.instance.appComponent.inject(this)
+            }
     }
 
     var adapter: UsersRVAdapter? = null
